@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8744", "--directory", "web"],
       "port": 8744
+    },
+    {
+      "name": "web-v2",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8745", "--directory", "web-v2"],
+      "port": 8745
     }
   ]
 }
