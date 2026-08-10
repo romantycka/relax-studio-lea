@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+._*
+
+# editory
+.vscode/
+.idea/
+*.swp
+
+# citlivé údaje (v projektu zatím žádné nejsou — nikdy je necommitovat)
+.env
+.env.*
+!.env.example
+
+# dočasné soubory
+*.log
+tmp/
