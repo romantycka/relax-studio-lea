@@ -144,6 +144,12 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--brow
 .leaf-1{width:66px;top:22%;left:9%;animation-delay:0s}
 .leaf-2{width:52px;top:34%;right:11%;animation-delay:2.6s;animation-duration:11s}
 .leaf-3{width:44px;bottom:24%;left:16%;animation-delay:1.4s;animation-duration:13s}
+.leaf-4{width:38px;top:13%;left:26%;animation-delay:3.4s;animation-duration:12s}
+.leaf-5{width:46px;bottom:15%;right:19%;animation-delay:.8s;animation-duration:10s}
+.leaf-6{width:34px;top:16%;right:24%;animation-delay:4.2s;animation-duration:14s}
+.leaf-7{width:30px;bottom:33%;right:6%;animation-delay:2s;animation-duration:12.5s}
+.leaf-8{width:36px;bottom:9%;left:7%;animation-delay:5s;animation-duration:11.5s}
+.leaf-9{width:28px;top:44%;left:4%;animation-delay:3s;animation-duration:15s}
 @keyframes float{
   0%,100%{transform:translateY(0) rotate(-6deg)}
   50%{transform:translateY(-26px) rotate(8deg)}
@@ -446,5 +452,6 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--brow
   .form-grid{grid-template-columns:1fr}
   .brand-text{font-size:1.15rem}
   .hero-cta .btn{width:100%;justify-content:center}
+  .leaf-4,.leaf-5,.leaf-6,.leaf-7,.leaf-8,.leaf-9{display:none}
   .band-content .btn{font-size:.82rem;padding:.9em 1.4em}
 }
