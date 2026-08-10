@@ -68,14 +68,12 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--brow
 .header-inner{width:min(1240px,94%);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:flex;align-items:center;gap:12px;color:#fff}
 .site-header.scrolled .brand{color:var(--brown)}
-.brand-mark{position:relative;display:block;width:56px;flex-shrink:0;line-height:0;transition:width .4s}
-.site-header.scrolled .brand-mark{width:48px}
-.brand-mark img{width:100%;height:auto;transition:opacity .4s}
-.brand-mark .mark-dark{position:absolute;inset:0;opacity:0}
-.site-header.scrolled .brand-mark .mark-light{opacity:0}
-.site-header.scrolled .brand-mark .mark-dark{opacity:1}
-.brand-text{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;letter-spacing:.06em;white-space:nowrap}
-.brand-text em{font-style:normal;color:var(--gold);letter-spacing:.14em}
+.brand-logo{
+  display:block;width:auto;height:76px;flex-shrink:0;
+  border-radius:6px;transition:height .4s;
+  box-shadow:0 2px 12px -4px rgba(24,18,8,.45);
+}
+.site-header.scrolled .brand-logo{height:60px}
 .main-nav{display:flex;align-items:center;gap:clamp(14px,2.4vw,34px)}
 .main-nav a{
   color:#fff;font-weight:400;font-size:.98rem;letter-spacing:.1em;text-transform:uppercase;
@@ -109,9 +107,8 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--brow
 }
 .hero-content{position:relative;z-index:2;color:#fff;padding:120px 20px 80px;max-width:900px}
 .hero-logo{
-  display:block;width:clamp(200px,24vw,280px);height:auto;margin:0 auto 26px;
-  border-radius:8px;
-  box-shadow:0 3px 10px rgba(24,18,8,.35),0 14px 40px rgba(24,18,8,.45);
+  width:clamp(190px,22vw,260px);height:auto;margin:0 auto 26px;
+  filter:drop-shadow(0 3px 10px rgba(24,18,8,.55)) drop-shadow(0 10px 30px rgba(24,18,8,.4));
 }
 .hero h1{
   color:#fff;font-size:clamp(2.6rem,6.4vw,4.6rem);font-weight:500;
@@ -450,7 +447,7 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--brow
 @media (max-width:560px){
   .cards,.gallery{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
-  .brand-text{font-size:1.15rem}
+  .brand-logo{height:56px}
   .hero-cta .btn{width:100%;justify-content:center}
   .leaf-4,.leaf-5,.leaf-6,.leaf-7,.leaf-8,.leaf-9{display:none}
   .band-content .btn{font-size:.82rem;padding:.9em 1.4em}
