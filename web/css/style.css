@@ -109,8 +109,9 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--brow
 }
 .hero-content{position:relative;z-index:2;color:#fff;padding:120px 20px 80px;max-width:900px}
 .hero-logo{
-  width:clamp(190px,22vw,260px);height:auto;margin:0 auto 26px;
-  filter:drop-shadow(0 3px 10px rgba(24,18,8,.55)) drop-shadow(0 10px 30px rgba(24,18,8,.4));
+  display:block;width:clamp(200px,24vw,280px);height:auto;margin:0 auto 26px;
+  border-radius:8px;
+  box-shadow:0 3px 10px rgba(24,18,8,.35),0 14px 40px rgba(24,18,8,.45);
 }
 .hero h1{
   color:#fff;font-size:clamp(2.6rem,6.4vw,4.6rem);font-weight:500;
