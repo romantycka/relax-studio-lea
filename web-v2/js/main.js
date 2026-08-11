@@ -13,8 +13,17 @@
     if (!setrneData) {
       video.src = 'video/hero.mp4?v=2';
       video.load();
+      // iOS v režimu nízké spotřeby autoplay odmítne — spustíme po prvním dotyku.
+      var naDotyk = function () {
+        video.play().catch(function () {});
+      };
       var prehrat = video.play();
-      if (prehrat && prehrat.catch) prehrat.catch(function () {});
+      if (prehrat && prehrat.catch) {
+        prehrat.catch(function () {
+          document.addEventListener('touchstart', naDotyk, { once: true, passive: true });
+          document.addEventListener('click', naDotyk, { once: true });
+        });
+      }
     }
   }
 
