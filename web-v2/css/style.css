@@ -291,6 +291,18 @@ button{font:inherit;color:inherit}
 .band-hours{font-size:.98rem;color:rgba(255,250,243,.9);margin-bottom:30px}
 .band-hours strong{font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.76rem;margin-right:8px}
 
+/* Světlá varianta pásu — pro prosvětlené fotky, kde by tmavý závoj zabil atmosféru.
+   Místo ztmavení se přes fotku položí krémový závoj a text je tmavý. */
+.band-light .band-veil{
+  background:
+    radial-gradient(58% 62% at 50% 50%,rgba(251,247,242,.78) 0%,rgba(251,247,242,.42) 60%,rgba(251,247,242,.28) 100%),
+    linear-gradient(180deg,rgba(251,247,242,.5) 0%,rgba(251,247,242,.26) 45%,rgba(243,236,226,.6) 100%);
+}
+.band-light .band-in{color:var(--ink)}
+.band-light .band-quote{text-shadow:0 1px 0 rgba(255,253,250,.6)}
+.band-light .band-hours{color:var(--muted)}
+.band-light .band-hours strong{color:var(--gold-deep)}
+
 /* ─────────── o mně ─────────── */
 .bento-about{align-items:stretch}
 .about-photo{min-height:560px}
