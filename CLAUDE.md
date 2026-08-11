@@ -11,15 +11,20 @@ Nahraje se na hosting jako soubory. Nepřidávej npm, bundler ani framework, pok
 ## Struktura
 
 Web běží na GitHub Pages: https://romantycka.github.io/relax-studio-lea/
-Kořenový `index.html` je rozcestník na varianty (`web/`, `web-v2/` a `web-v3/`), klient si podle
+Kořenový `index.html` je rozcestník na varianty (`web/` a `web-v3/`), klient si podle
 něj vybírá. Repozitář je veřejný.
+
+V rozcestníku jsou jen dvě karty: „Varianta 1 — Klasická“ (`web/`) a „Varianta 2 — Bento“
+(`web-v3/`). Složka `web-v2/` zůstává v repozitáři, ale **z rozcestníku je odebraná** —
+klientovi se nenabízí. Číslo varianty v rozcestníku tedy nesouhlasí s názvem složky.
 
 ```
 Relax_Studio/
 ├── index.html            ← rozcestník variant (jen pro Pages, ne pro finální hosting)
-├── web-v3/               ← 3. varianta: kopie v2 v růžovo-béžové paletě, jediný font Quicksand,
-│                            vlastní hero video (bez vodoznaku, viz „Hero video ve variantě 3“)
-├── web-v2/               ← 2. varianta: bento mřížka, pastely, video v hero
+├── web-v3/               ← v rozcestníku jako „Varianta 2 — Bento“: kopie v2 v růžovo-béžové
+│                            paletě, jediný font Quicksand, vlastní hero video
+│                            (bez vodoznaku, viz „Hero video ve variantě 3“)
+├── web-v2/               ← odložená varianta, není v rozcestníku: bento mřížka, pastely
 ├── web/                  ← 1. varianta, tohle se nahrává na hosting
 │   ├── index.html        ← celý web je jedna stránka (one-page + kotvy)
 │   ├── css/style.css
