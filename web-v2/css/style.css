@@ -187,7 +187,7 @@ button{font:inherit;color:inherit}
 }
 .head.left{text-align:left;margin-inline:0}
 .kicker{display:inline-block;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.head h2,.about-text h2{font-size:clamp(2.1rem,4.6vw,3.4rem)}
+.head h2{font-size:clamp(2.1rem,4.6vw,3.4rem)}
 .lead{color:var(--muted);margin-top:18px;font-size:1.06rem}
 
 /* ─────────── bento mřížka ─────────── */
@@ -313,7 +313,6 @@ button{font:inherit;color:inherit}
   display:flex;flex-direction:column;justify-content:flex-start;
 }
 .about-text .kicker{margin-bottom:10px}
-.about-text h2{margin-bottom:22px}
 #aboutToggle{align-self:flex-start;margin-top:10px}
 .about-foot{
   display:grid;grid-template-columns:repeat(3,auto);gap:26px;justify-content:start;
@@ -329,6 +328,7 @@ button{font:inherit;color:inherit}
   color:var(--ink);padding-left:22px;border-left:2px solid var(--sage);
 }
 .about-invite{color:var(--ink)!important;font-size:1.06rem}
+.about-signature{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--ink);margin-top:-6px}
 .about-rest{overflow:hidden}
 
 /* ─────────── galerie ─────────── */
