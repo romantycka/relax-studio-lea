@@ -35,7 +35,7 @@ body{
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;line-height:1.14;margin:0;letter-spacing:.005em}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:400;line-height:1.14;margin:0;letter-spacing:.005em}
 p{margin:0 0 1em}
 button{font:inherit;color:inherit}
 
@@ -131,8 +131,8 @@ button{font:inherit;color:inherit}
 
 .hero-in{position:relative;z-index:2;width:min(1240px,92%);margin-inline:auto;color:#fffaf3;padding:160px 0 120px;max-width:1240px}
 .hero-eyebrow{font-size:.76rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(255,250,243,.82);margin-bottom:22px}
-.hero-title{font-size:clamp(3rem,8.2vw,7.4rem);font-weight:300;letter-spacing:-.01em;text-shadow:0 20px 60px rgba(30,24,16,.34)}
-.hero-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.25rem,2.4vw,1.8rem);color:rgba(255,250,243,.94);margin:22px 0 40px}
+.hero-title{font-size:clamp(2.7rem,7.4vw,6.6rem);font-weight:400;letter-spacing:-.015em;text-shadow:0 20px 60px rgba(30,24,16,.34)}
+.hero-lead{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.25rem,2.4vw,1.8rem);color:rgba(255,250,243,.94);margin:22px 0 40px}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
 .hero-btns .btn-line{border-color:rgba(255,250,243,.55);color:#fffaf3}
 .hero-btns .btn-line:hover{background:rgba(255,250,243,.14);border-color:#fffaf3}
@@ -145,12 +145,22 @@ button{font:inherit;color:inherit}
 @keyframes wheel{0%{opacity:0;transform:translateY(0)}25%{opacity:1}70%{opacity:0;transform:translateY(15px)}100%{opacity:0}}
 
 /* ─────────── sekce ─────────── */
-.sec{position:relative;padding:clamp(80px,10vw,150px) 0;z-index:1}
+.sec{position:relative;padding:clamp(80px,10vw,150px) 0;z-index:1;overflow:hidden}
 .sec-lift{background:var(--cream);border-radius:var(--r-lg) var(--r-lg) 0 0;margin-top:-46px;box-shadow:0 -30px 60px -40px rgba(58,53,45,.45)}
 .sec-tint{background:linear-gradient(180deg,var(--sand) 0%,var(--cream) 100%)}
 .sec-form{background:linear-gradient(180deg,var(--mist) 0%,var(--cream) 100%)}
 
+/* jemné světelné skvrny v pozadí sekcí — aby plochy nebyly holé */
+.sec::before,.sec::after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:0;filter:blur(70px)}
+.sec::before{width:38vw;height:38vw;top:-6vw;right:-10vw;background:radial-gradient(circle,rgba(139,154,125,.16),rgba(139,154,125,0) 70%)}
+.sec::after{width:32vw;height:32vw;bottom:-8vw;left:-12vw;background:radial-gradient(circle,rgba(197,152,116,.14),rgba(197,152,116,0) 70%)}
+.sec > .wrap{position:relative;z-index:1}
+
 .head{max-width:760px;margin:0 auto clamp(42px,5vw,70px);text-align:center}
+.head .kicker::after{
+  content:"";display:block;width:56px;height:1px;margin:14px auto 0;
+  background:linear-gradient(90deg,rgba(168,131,79,0),rgba(168,131,79,.7),rgba(168,131,79,0));
+}
 .head.left{text-align:left;margin-inline:0}
 .kicker{display:inline-block;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 .head h2,.about-text h2{font-size:clamp(2.1rem,4.6vw,3.4rem)}
@@ -163,6 +173,7 @@ button{font:inherit;color:inherit}
 .c5{grid-column:span 5}
 .c6{grid-column:span 6}
 .c7{grid-column:span 7}
+.c8{grid-column:span 8}
 .c12{grid-column:span 12}
 .r2{grid-row:span 2}
 
@@ -174,13 +185,49 @@ button{font:inherit;color:inherit}
 .tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-m)}
 .tile h3{font-size:1.5rem;margin-bottom:10px}
 .tile p{color:var(--muted);margin:0}
-.tile-soft{background:linear-gradient(160deg,var(--mist),var(--card) 70%)}
+.tile-soft{background:linear-gradient(160deg,var(--mist),var(--card) 70%);display:flex;flex-direction:column}
 .tile-accent{background:linear-gradient(155deg,var(--blush),var(--sand));display:flex;flex-direction:column;justify-content:center}
-.tile-num{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,4.6rem);line-height:1;color:var(--sage-deep);margin:0 0 12px}
+.tile-num{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,4.6rem);line-height:1;color:var(--sage-deep);margin:0 0 12px}
 .tile-ico{display:block;width:56px;height:56px;color:var(--sage);margin-bottom:18px}
+
+/* štítky se službami — zaplní dlaždici a rovnou napoví, co studio nabízí */
+.tile-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:22px 0 0}
+.tile-tags li{
+  font-size:.82rem;letter-spacing:.02em;color:var(--sage-deep);
+  background:rgba(139,154,125,.14);border:1px solid rgba(139,154,125,.28);
+  border-radius:100px;padding:.42em 1em;
+}
+.tile-lnk{align-self:flex-start;margin-top:auto;padding-top:24px}
+
+.tile-kicker{display:block;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.tile-stats{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0 0;padding-top:22px;border-top:1px solid rgba(58,53,45,.12)}
+.tile-accent{justify-content:flex-start}
+.tile-accent .tile-stats{margin-top:auto}
+.tile-stats dt{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.tile-stats dd{margin:0;font-family:'Playfair Display',serif;font-size:1.32rem;color:var(--ink)}
+
+/* postup návštěvy */
+.tile-steps{display:flex;flex-direction:column;background:linear-gradient(150deg,var(--card),var(--sand) 180%)}
+.steps{list-style:none;counter-reset:k;padding:0;margin:24px 0 0;display:grid;gap:20px}
+.steps li{display:flex;gap:18px;align-items:flex-start}
+.step-n{
+  flex-shrink:0;width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--sage-deep);
+  background:var(--mist);border:1px solid rgba(139,154,125,.35);
+}
+.steps strong{font-weight:500;display:block;margin-bottom:2px}
+.steps p{margin:0;color:var(--muted);font-size:.94rem;line-height:1.6}
+.tile-steps .btn{align-self:flex-start;margin-top:auto;margin-top:28px}
 .tile-ico svg{width:100%;height:100%}
-.tile-photo{padding:0;min-height:260px;display:flex}
-.tile-photo img{width:100%;height:100%;object-fit:cover;flex:1;transition:transform 1.1s var(--ease)}
+/* Fotka vyplňuje dlaždici a nikdy neurčuje její výšku — jinak portrétní snímek
+   roztáhne celý řádek mřížky a vedle vznikne prázdné místo.
+   Přesah nahoře i dole je rezerva pro parallax, aby se neodkryl okraj. */
+.tile-photo{padding:0;min-height:440px}
+.tile-photo img{
+  position:absolute;left:0;right:0;top:-48px;height:calc(100% + 96px);
+  width:100%;object-fit:cover;transition:transform 1.1s var(--ease);
+}
 .tile-photo:hover img{transform:scale(1.05)}
 .tile-cap{
   position:absolute;inset:auto 0 0 0;padding:30px;color:#fffaf3;
@@ -189,10 +236,17 @@ button{font:inherit;color:inherit}
 .tile-cap h3{color:#fffaf3}
 .tile-cap p{color:rgba(255,250,243,.86)}
 .tile-quote{
-  display:flex;align-items:center;justify-content:space-between;gap:34px;flex-wrap:wrap;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:28px;
   background:linear-gradient(120deg,var(--sand),var(--lilac));
 }
-.tile-quote blockquote{margin:0;font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-style:italic;line-height:1.42;flex:1 1 420px}
+.tile-quote blockquote{
+  margin:0;font-family:'Playfair Display',serif;font-size:clamp(1.25rem,2.1vw,1.72rem);
+  font-style:italic;line-height:1.45;position:relative;padding-top:14px;
+}
+.tile-quote blockquote::before{
+  content:"„";position:absolute;top:-18px;left:-6px;font-size:4.5rem;line-height:1;
+  color:rgba(139,154,125,.35);font-family:'Playfair Display',serif;
+}
 
 /* ─────────── služby ─────────── */
 .bento-srv{gap:18px}
@@ -216,8 +270,13 @@ button{font:inherit;color:inherit}
 .srv-detail p{color:var(--muted);font-size:.95rem;margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line)}
 .srv-acts{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:auto;padding-top:22px;flex-wrap:wrap}
 .srv-slim{background:linear-gradient(165deg,var(--card),var(--sand) 160%)}
-.srv-note{text-align:center;color:var(--muted);margin-top:38px}
-.srv-note a{color:var(--sage-deep);border-bottom:1px solid rgba(94,110,81,.4)}
+.srv-cta{
+  display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap;
+  background:linear-gradient(125deg,var(--mist),var(--blush));
+}
+.srv-cta h3{font-size:1.75rem;margin-bottom:8px}
+.srv-cta p{max-width:52ch}
+.srv-cta-btns{display:flex;gap:12px;flex-wrap:wrap}
 .srv.is-picked{border-color:var(--sage);box-shadow:0 0 0 2px rgba(139,154,125,.28),var(--shadow-m)}
 
 /* ─────────── parallax pás ─────────── */
@@ -225,31 +284,48 @@ button{font:inherit;color:inherit}
 .band-bg{position:absolute;inset:-14% 0;background-size:cover;background-position:center;z-index:-2;will-change:transform}
 .band-veil{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(58,53,45,.5),rgba(58,53,45,.34) 50%,rgba(58,53,45,.62))}
 .band-in{width:min(760px,90%);margin-inline:auto;text-align:center;color:#fffaf3;padding:80px 0}
-.band-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.7rem,4vw,2.9rem);line-height:1.3;margin-bottom:24px}
+.band-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.7rem,4vw,2.9rem);line-height:1.3;margin-bottom:24px}
 .band-hours{font-size:.98rem;color:rgba(255,250,243,.9);margin-bottom:30px}
 .band-hours strong{font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.76rem;margin-right:8px}
 
 /* ─────────── o mně ─────────── */
 .bento-about{align-items:stretch}
-.about-photo{min-height:420px}
+.about-photo{min-height:560px}
+.about-photo img{object-position:center 22%}
 .about-text{
   background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);
   padding:clamp(30px,4vw,54px);box-shadow:var(--shadow-s);
+  display:flex;flex-direction:column;justify-content:flex-start;
 }
+.about-text .kicker{margin-bottom:10px}
+.about-text h2{margin-bottom:22px}
+#aboutToggle{align-self:flex-start;margin-top:10px}
+.about-foot{
+  display:grid;grid-template-columns:repeat(3,auto);gap:26px;justify-content:start;
+  margin:auto 0 0;padding-top:30px;border-top:1px solid var(--line);
+}
+.about-foot dt{font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.about-foot dd{margin:0;font-size:.94rem;color:var(--ink)}
+.about-foot a{border-bottom:1px solid var(--line)}
+.about-foot a:hover{border-color:var(--sage-deep)}
 .about-text p{color:var(--muted)}
 .about-accent{
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.28rem;
+  font-family:'Playfair Display',serif;font-style:italic;font-size:1.28rem;
   color:var(--ink);padding-left:22px;border-left:2px solid var(--sage);
 }
 .about-invite{color:var(--ink)!important;font-size:1.06rem}
 .about-rest{overflow:hidden}
 
 /* ─────────── galerie ─────────── */
+.bento-gal{grid-auto-rows:230px}
 .bento-gal .gal{
-  position:relative;overflow:hidden;border-radius:var(--r-md);min-height:250px;
+  position:relative;overflow:hidden;border-radius:var(--r-md);
   background:var(--sand);box-shadow:var(--shadow-s);
 }
-.bento-gal .gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.bento-gal .gal img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform 1.2s var(--ease);
+}
 .bento-gal .gal:hover img{transform:scale(1.07)}
 .bento-gal .gal::after{
   content:"";position:absolute;inset:0;background:rgba(58,53,45,0);transition:background .5s;
@@ -263,7 +339,7 @@ button{font:inherit;color:inherit}
   transition:transform .5s var(--ease),box-shadow .5s var(--ease);
 }
 .ref:hover{transform:translateY(-4px);box-shadow:var(--shadow-m)}
-.ref p{font-family:'Cormorant Garamond',serif;font-size:1.32rem;font-style:italic;line-height:1.5;flex:1}
+.ref p{font-family:'Playfair Display',serif;font-size:1.32rem;font-style:italic;line-height:1.5;flex:1}
 .ref footer{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
 
 /* ─────────── formulář ─────────── */
@@ -346,7 +422,7 @@ button{font:inherit;color:inherit}
 @media (max-width:1080px){
   .bento{gap:14px}
   .c3,.c4,.c5{grid-column:span 6}
-  .c7{grid-column:span 12}
+  .c7,.c8{grid-column:span 12}
   .r2{grid-row:span 1}
   .tile-photo{min-height:300px}
   .about-photo{min-height:340px}
@@ -367,7 +443,7 @@ button{font:inherit;color:inherit}
   .hero-in{padding:130px 0 110px}
   .hero-facts{gap:26px}
   .sec{padding:74px 0}
-  .c3,.c4,.c5,.c6,.c7{grid-column:span 12}
+  .c3,.c4,.c5,.c6,.c7,.c8{grid-column:span 12}
   .f-grid{grid-template-columns:1fr}
   .tile-quote{flex-direction:column;align-items:flex-start}
   .band{min-height:60vh}
@@ -375,6 +451,9 @@ button{font:inherit;color:inherit}
 @media (max-width:560px){
   .tile,.srv-body,.ref{padding:24px}
   .about-text{padding:26px}
+  .about-foot{grid-template-columns:1fr;gap:16px}
+  .tile-stats{grid-template-columns:1fr}
+  .srv-cta-btns{width:100%}
   .hero-facts{flex-direction:column;gap:16px}
   .srv-top{flex-direction:column;gap:4px}
   .srv-acts{flex-direction:column;align-items:center}

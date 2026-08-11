@@ -8,8 +8,8 @@
 <link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
@@ -76,7 +76,7 @@
     </header>
 
     <div class="bento bento-intro">
-      <article class="tile tile-photo c7 r2 reveal">
+      <article class="tile tile-photo c7 reveal">
         <img src="img/studio-1.jpg" alt="Masážní lehátko u okna" loading="lazy" data-speed="0.06">
         <div class="tile-cap"><h3>Oáza klidu</h3><p>V&nbsp;ruchu velkoměsta, ale přesto oáza klidu v&nbsp;samém centru Liberce.</p></div>
       </article>
@@ -87,19 +87,43 @@
         </span>
         <h3>Široká nabídka služeb</h3>
         <p>Reflexní terapie, Breussova masáž, olejová masáž, nebo je libo třeba masáž plosek nohou?</p>
+        <ul class="tile-tags">
+          <li>Reflexní terapie</li>
+          <li>Breussova masáž</li>
+          <li>Medová masáž</li>
+          <li>Plosky nohou</li>
+          <li>Záda a&nbsp;šíje</li>
+          <li>Baňkování</li>
+        </ul>
+        <a href="#sluzby" class="lnk tile-lnk">Celá nabídka a&nbsp;ceník</a>
       </article>
 
       <article class="tile tile-accent c5 reveal" style="--d:.16s">
+        <span class="tile-kicker">Ve&nbsp;studiu od&nbsp;roku</span>
         <p class="tile-num">2015</p>
         <p>Od tohoto roku se ve&nbsp;studiu staráme o&nbsp;záda, nohy i&nbsp;hlavu našich klientů.</p>
+        <dl class="tile-stats">
+          <div><dt>Masáží v&nbsp;nabídce</dt><dd>15</dd></div>
+          <div><dt>Délka procedury</dt><dd>40&nbsp;–&nbsp;120&nbsp;min</dd></div>
+        </dl>
       </article>
 
-      <article class="tile tile-photo c7 reveal" style="--d:.24s">
+      <article class="tile tile-steps c7 reveal" style="--d:.24s">
+        <h3>Jak to u&nbsp;nás probíhá</h3>
+        <ol class="steps">
+          <li><span class="step-n">1</span><div><strong>Ozvete se</strong><p>Telefonem, e-mailem nebo formulářem na&nbsp;tomto webu.</p></div></li>
+          <li><span class="step-n">2</span><div><strong>Domluvíme termín</strong><p>Řekneme si, co vás trápí, a&nbsp;vybereme vhodnou masáž.</p></div></li>
+          <li><span class="step-n">3</span><div><strong>Přijdete si odpočinout</strong><p>Ručníky, olej i&nbsp;klid jsou připravené. Vy už jen ležíte.</p></div></li>
+        </ol>
+        <a href="#objednavka" class="btn btn-fill sm">Objednat termín</a>
+      </article>
+
+      <article class="tile tile-photo c5 reveal" style="--d:.32s">
         <img src="img/detail-tray.jpg" alt="Svíčka a kosmetika na podnose" loading="lazy" data-speed="0.05">
         <div class="tile-cap"><h3>Odbornost a&nbsp;osobní přístup</h3><p>U&nbsp;nás jste v&nbsp;dobrých rukou a&nbsp;budete se cítit jako doma.</p></div>
       </article>
 
-      <article class="tile tile-quote c12 reveal" style="--d:.1s">
+      <article class="tile tile-quote c7 reveal" style="--d:.4s">
         <blockquote>Znáte to – bolavá záda nebo nohy, těžké vstávání z&nbsp;postele. Tělo tak nastavuje „stopku“, snaží se bránit dalšímu zápřahu a&nbsp;žádá o&nbsp;chvíli klidu a&nbsp;odpočinku.</blockquote>
         <a href="#objednavka" class="btn btn-line sm">Objednat se</a>
       </article>
@@ -333,9 +357,17 @@
         </div>
       </article>
 
+      <article class="tile srv-cta c8 reveal" style="--d:.08s">
+        <div>
+          <h3>Nevíte si vybrat?</h3>
+          <p>Zavolejte a&nbsp;řekněte mi, co vás trápí — společně vybereme masáž, která vám sedne nejlíp. Poradím i&nbsp;s&nbsp;délkou a&nbsp;vhodným rozestupem mezi návštěvami.</p>
+        </div>
+        <div class="srv-cta-btns">
+          <a href="tel:+420737706415" class="btn btn-fill sm">+420&nbsp;737&nbsp;706&nbsp;415</a>
+          <a href="#objednavka" class="btn btn-line sm">Objednat formulářem</a>
+        </div>
+      </article>
     </div>
-
-    <p class="srv-note reveal">Nevíte si vybrat? Zavolejte na&nbsp;<a href="tel:+420737706415">+420&nbsp;737&nbsp;706&nbsp;415</a> a&nbsp;domluvíme se, co bude pro&nbsp;vás nejlepší.</p>
   </div>
 </section>
 
@@ -354,8 +386,8 @@
 <section class="sec sec-lift" id="o-mne">
   <div class="wrap">
     <div class="bento bento-about">
-      <div class="tile tile-photo about-photo c5 r2 reveal-l">
-        <img src="img/2.jpg" alt="Zátiší z Relax studia LEA" loading="lazy" data-speed="0.07">
+      <div class="tile tile-photo about-photo c5 reveal-l">
+        <img src="img/o-mne.jpg" alt="Leona Roubková — Relax studio LEA" loading="lazy" data-speed="0.05">
       </div>
       <div class="about-text c7 reveal-r">
         <span class="kicker">O&nbsp;mně</span>
@@ -370,6 +402,11 @@
         </div>
         <p class="about-invite">Budu moc ráda, když ke&nbsp;mně přijdete na&nbsp;masáž, těším se na&nbsp;Vaši návštěvu.</p>
         <button class="lnk" id="aboutToggle" type="button" aria-expanded="false" aria-controls="aboutRest">Číst celý příběh</button>
+        <dl class="about-foot">
+          <div><dt>Studio</dt><dd>Moskevská 52/24, Liberec</dd></div>
+          <div><dt>Objednávky</dt><dd><a href="tel:+420737706415">+420&nbsp;737&nbsp;706&nbsp;415</a></dd></div>
+          <div><dt>Otevřeno</dt><dd>Po&nbsp;–&nbsp;Pá 8:30&nbsp;–&nbsp;18:00</dd></div>
+        </dl>
       </div>
     </div>
   </div>
@@ -530,6 +567,6 @@
   <img id="lbImg" alt="Fotografie ze studia">
 </div>
 
-<script src="js/main.js?v=1"></script>
+<script src="js/main.js?v=2"></script>
 </body>
 </html>
