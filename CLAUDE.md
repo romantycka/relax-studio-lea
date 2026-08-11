@@ -10,9 +10,15 @@ Nahraje se na hosting jako soubory. Nepřidávej npm, bundler ani framework, pok
 
 ## Struktura
 
+Web běží na GitHub Pages: https://romantycka.github.io/relax-studio-lea/
+Kořenový `index.html` je rozcestník na obě varianty (`web/` a `web-v2/`), klient si podle
+něj vybírá. Repozitář je veřejný.
+
 ```
 Relax_Studio/
-├── web/                  ← samotný web, tohle se nahrává na hosting
+├── index.html            ← rozcestník variant (jen pro Pages, ne pro finální hosting)
+├── web-v2/               ← 2. varianta: bento mřížka, pastely, video v hero
+├── web/                  ← 1. varianta, tohle se nahrává na hosting
 │   ├── index.html        ← celý web je jedna stránka (one-page + kotvy)
 │   ├── css/style.css
 │   ├── js/main.js        ← animace, parallax, menu, galerie, formulář, feed
@@ -89,7 +95,8 @@ Pokud by se přidával server, musí se řešit ochrana proti spamu a souhlas se
 python3 -m http.server 8744 --directory web
 ```
 
-V Claude Code je připravená konfigurace v `.claude/launch.json` (`preview_start` → „web“).
+V Claude Code je připravená konfigurace v `.claude/launch.json` (`preview_start` → „web“
+nebo „web-v2“, port 8745).
 
 ## Jak testovat změny
 
@@ -104,6 +111,15 @@ Co má po projetí celé stránky vyjít:
 
 Pozor: headless Chrome má minimální šířku okna ~500 px. Skutečnou mobilní šířku (375 px)
 takhle neotestuješ — na to použij panel prohlížeče (`resize_window` → mobile).
+
+Ve **variantě 2** je stejná kontrola, jen se třídou `.is-in` a **41** prvky.
+
+Dvě pasti, na které se dá narazit znovu:
+- V panelu prohlížeče mají stránky `document.visibilityState === "hidden"`, takže
+  `IntersectionObserver` **nikdy nespustí** — animace se tam ověřit nedají, jen vzhled.
+  Na animace používej headless Chrome přes CDP.
+- Ke starému běžícímu headless Chromu na stejném ladicím portu se připojí i nový běh
+  a měří se pak jiné okno. Před měřením `pkill -f "remote-debugging-port=..."`.
 
 ## Přegenerování loga
 
