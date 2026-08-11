@@ -6,9 +6,9 @@
   var klid = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ── video na pozadí hero ──
-     Zdroj se nastavuje až v JS, aby se na mobilech a při úspoře dat nestahoval. */
+     Zdroj se nastavuje až v JS, aby se při úspoře dat nestahoval. */
   var video = document.getElementById('heroVideo');
-  if (video && !klid && window.innerWidth > 860) {
+  if (video && !klid) {
     var setrneData = navigator.connection && navigator.connection.saveData;
     if (!setrneData) {
       video.src = 'video/hero.mp4?v=2';
