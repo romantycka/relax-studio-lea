@@ -11,12 +11,14 @@ Nahraje se na hosting jako soubory. Nepřidávej npm, bundler ani framework, pok
 ## Struktura
 
 Web běží na GitHub Pages: https://romantycka.github.io/relax-studio-lea/
-Kořenový `index.html` je rozcestník na obě varianty (`web/` a `web-v2/`), klient si podle
+Kořenový `index.html` je rozcestník na varianty (`web/`, `web-v2/` a `web-v3/`), klient si podle
 něj vybírá. Repozitář je veřejný.
 
 ```
 Relax_Studio/
 ├── index.html            ← rozcestník variant (jen pro Pages, ne pro finální hosting)
+├── web-v3/               ← 3. varianta: kopie v2 v růžovo-béžové paletě, jediný font Quicksand,
+│                            vlastní hero video (bez vodoznaku, viz „Hero video ve variantě 3“)
 ├── web-v2/               ← 2. varianta: bento mřížka, pastely, video v hero
 ├── web/                  ← 1. varianta, tohle se nahrává na hosting
 │   ├── index.html        ← celý web je jedna stránka (one-page + kotvy)
@@ -26,10 +28,11 @@ Relax_Studio/
 │   ├── img/              ← optimalizované obrázky pro web (max 1920 px)
 │   ├── README.md         ← návod pro majitelku a správce webu
 │   └── vzor-tabulky-aktuality.csv
-└── *.jpg                 ← originální nezmenšené fotky a logo od majitelky (zdroj)
+└── *.jpg, *.mp4          ← originální nezmenšené fotky, video a logo od majitelky (zdroj)
 ```
 
-Fotky v kořeni jsou **zdroje**. Na web patří jen jejich zmenšené kopie ve `web/img/`.
+Fotky a video v kořeni jsou **zdroje**. Na web patří jen jejich zmenšené kopie
+ve `web/img/`, resp. `web-v3/video/`.
 
 ## Pravidla obsahu
 
@@ -84,6 +87,52 @@ Proč ne automatický feed: profil je **osobní**, ne firemní stránka. Faceboo
 funguje jen pro stránky. Plná automatika by šla až po převodu profilu na firemní stránku —
 majitelce navrženo, zatím **odloženo, neřešit bez jejího pokynu**.
 
+## Nasouvání sekcí ve variantě 3
+
+Přišpendlené jsou čtyři bloky — hero, parallaxový pás, reference a patička. Zůstanou stát
+a následující sekce se přes ně nasune. Každá dvojice je obalená v `<div class="stick">`;
+díky tomu sticky skončí, jakmile je blok překrytý, a video se pak neskládá pod zbytkem
+stránky. Ostatní sekce mají třídu `.sec-over` (zaoblená horní hrana, přesah −46 px, stín
+nahoru), takže se přes sebe nasouvají taky.
+
+**Přišpendlit jde jen blok, který se vejde do okna** — jinak se jeho spodek stane trvale
+nedosažitelným. Naměřené výšky sekcí (šířky 1000–2560 px):
+
+| sekce | výška | vhodná k přišpendlení |
+|---|---|---|
+| pás s fotkou | 429 – 695 px | ano, vejde se vždy |
+| reference | 660 – 734 px | ano od šířky 1081 px (pod ní se karty lámou do dvou řad) |
+| patička | 147 px (mobil 276) | ano, vejde se vždy |
+| galerie / o mně / kontakt | 835 – 1176 px | ne, vejdou se jen na velkých displejích |
+| uvítání / služby / objednávka | 1268 – 2998 px | ne |
+
+Patička je `sticky bottom:0` se `z-index:-1` — kontakty se přes ni odsouvají nahoru.
+Bez záporného z-indexu by její tmavý pruh svítil přes hero (patička je v DOM později).
+
+Čtyři věci, které to rozbijí:
+- `overflow-x:hidden` na `body` — udělá z body scrollovací kontejner a **sticky přestane
+  fungovat**. Proto je tam `overflow-x:clip`. Neměnit zpátky.
+- Přišpendlení hero platí až od 861 px (`@media (min-width:861px)`). Na užších displejích je
+  hero vyšší než okno a jeho spodek s kontakty by se stal nedosažitelným. Reference se
+  přišpendlí až od `(min-width:1081px) and (min-height:780px)` ze stejného důvodu.
+- `offsetTop` uvnitř obalu `.stick` je vůči obalu, ne vůči dokumentu. Na scrollování
+  v testech používej `getBoundingClientRect().top + scrollY`.
+- `prefers-reduced-motion` vrací obojí na `position:relative` — ten blok musí v CSS zůstat
+  až za media query s přišpendlením, jinak ho nepřebije.
+
+## Hero video ve variantě 3
+
+Zdroj je v kořeni jako `hero video.mp4` (AI generované, 1280×720, 10 s). Měl v pravém
+dolním rohu vodoznak generátoru. Do `web-v3/video/hero.mp4` je nasazená verze bez něj:
+
+```bash
+ffmpeg -i "hero video.mp4" -vf "delogo=x=1116:y=548:w=88:h=88" -an \
+  -c:v libx264 -preset slow -crf 27 -pix_fmt yuv420p -movflags +faststart web-v3/video/hero.mp4
+```
+
+Zvuk se zahazuje (video běží mute), poster `web-v3/img/hero-poster.jpg` je první snímek.
+Výsledek je ~630 kB. Vodoznak byl ověřen na výřezech obou spodních rohů po celé délce.
+
 ## Objednávkový formulář
 
 Nemá backend. Po odeslání sestaví předvyplněný e-mail přes `mailto:`.
@@ -95,8 +144,8 @@ Pokud by se přidával server, musí se řešit ochrana proti spamu a souhlas se
 python3 -m http.server 8744 --directory web
 ```
 
-V Claude Code je připravená konfigurace v `.claude/launch.json` (`preview_start` → „web“
-nebo „web-v2“, port 8745).
+V Claude Code je připravená konfigurace v `.claude/launch.json` (`preview_start` → „web“,
+„web-v2“ na portu 8745, „web-v3“ na portu 8746, „rozcestnik“ nad kořenem na portu 8747).
 
 ## Jak testovat změny
 
@@ -113,8 +162,12 @@ Pozor: headless Chrome má minimální šířku okna ~500 px. Skutečnou mobiln�
 takhle neotestuješ — na to použij panel prohlížeče (`resize_window` → mobile).
 
 Ve **variantě 2** je stejná kontrola, jen se třídou `.is-in` a **41** prvky.
+Ve **variantě 3** taky `.is-in`, ale **45** prvků.
 
-Dvě pasti, na které se dá narazit znovu:
+Tři pasti, na které se dá narazit znovu:
+- `window.scrollTo(y)` se kvůli `scroll-behavior:smooth` projeví až po chvíli. Když se
+  poloha čte hned, vyjde stará hodnota (a vypadá to, že prvek je přišpendlený, i když není).
+  Buď počkej ~0,5 s, nebo použij `scrollTo({top:y, behavior:'instant'})`.
 - V panelu prohlížeče mají stránky `document.visibilityState === "hidden"`, takže
   `IntersectionObserver` **nikdy nespustí** — animace se tam ověřit nedají, jen vzhled.
   Na animace používej headless Chrome přes CDP.

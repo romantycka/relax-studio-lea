@@ -2,6 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "rozcestnik",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8747", "--directory", "."],
+      "port": 8747
+    },
+    {
       "name": "web",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8744", "--directory", "web"],
@@ -12,6 +18,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8745", "--directory", "web-v2"],
       "port": 8745
+    },
+    {
+      "name": "web-v3",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8746", "--directory", "web-v3"],
+      "port": 8746
     }
   ]
 }
