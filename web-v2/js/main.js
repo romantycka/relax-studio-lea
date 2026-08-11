@@ -11,7 +11,7 @@
   if (video && !klid && window.innerWidth > 860) {
     var setrneData = navigator.connection && navigator.connection.saveData;
     if (!setrneData) {
-      video.src = 'video/hero.mp4';
+      video.src = 'video/hero.mp4?v=2';
       video.load();
       var prehrat = video.play();
       if (prehrat && prehrat.catch) prehrat.catch(function () {});
