@@ -12,6 +12,7 @@
   --sage-deep:#5e6e51;
   --clay:#b98e6f;
   --gold:#a8834f;
+  --gold-deep:#8a683c;
   --ink:#3a352d;
   --muted:#7c7266;
   --line:rgba(58,53,45,.10);
@@ -92,26 +93,34 @@ button{font:inherit;color:inherit}
 .hdr-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:currentColor;transition:right .35s var(--ease)}
 .hdr-nav a:hover::after{right:0}
 .hdr.is-stuck .hdr-nav a{color:var(--ink)}
-/* Aktuality — zlatý odstín a jemně tepající tečka, ať přitáhnou pozornost */
-.hdr-nav .nav-news{color:var(--gold)}
-.hdr.is-stuck .hdr-nav .nav-news{color:var(--gold)}
+/* Aktuality — plný zlatý štítek s tepající tečkou; čitelný na fotce i na světlé hlavičce */
+.hdr-nav a.nav-news{
+  background:var(--gold-deep);color:#fffaf3;
+  border-radius:100px;padding:.7em 1.4em;
+  box-shadow:0 4px 14px -6px rgba(58,53,45,.5);
+}
+.hdr-nav .nav-news::after{display:none}
+.hdr-nav a.nav-news:hover{background:var(--ink)}
+.hdr.is-stuck .hdr-nav a.nav-news{color:#fffaf3}
 .nav-dot{
-  display:inline-block;width:6px;height:6px;margin-left:7px;vertical-align:2px;
-  border-radius:50%;background:currentColor;
+  display:inline-block;width:6px;height:6px;margin-left:8px;vertical-align:2px;
+  border-radius:50%;background:#fffaf3;
   animation:tep 2.8s ease-out infinite;
 }
 @keyframes tep{
-  0%{box-shadow:0 0 0 0 rgba(168,131,79,.6)}
-  60%{box-shadow:0 0 0 7px rgba(168,131,79,0)}
-  100%{box-shadow:0 0 0 0 rgba(168,131,79,0)}
+  0%{box-shadow:0 0 0 0 rgba(255,250,243,.7)}
+  60%{box-shadow:0 0 0 6px rgba(255,250,243,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,250,243,0)}
 }
 .hdr-nav .nav-cta{
   border:1px solid rgba(255,250,243,.5);border-radius:100px;padding:.7em 1.5em;
 }
 .hdr-nav .nav-cta::after{display:none}
 .hdr-nav .nav-cta:hover{background:rgba(255,250,243,.16)}
-.hdr.is-stuck .nav-cta{border-color:var(--sage-deep);background:var(--sage-deep);color:#fdfcf9}
-.hdr.is-stuck .nav-cta:hover{background:var(--ink);border-color:var(--ink)}
+/* pozor na specificitu: obecné `.hdr.is-stuck .hdr-nav a` je silnější než `.hdr.is-stuck .nav-cta`,
+   proto tu musí být selektor přes .hdr-nav — jinak tlačítko zdědí tmavý text na tmavém podkladu */
+.hdr.is-stuck .hdr-nav .nav-cta{border-color:var(--sage-deep);background:var(--sage-deep);color:#fdfcf9}
+.hdr.is-stuck .hdr-nav .nav-cta:hover{background:var(--ink);border-color:var(--ink)}
 .hdr-burger{display:none;background:none;border:0;width:44px;height:38px;padding:8px;cursor:pointer}
 .hdr-burger span{display:block;height:1.5px;background:#fffaf3;margin:6px 0;transition:transform .4s var(--ease),opacity .3s,background .45s}
 .hdr.is-stuck .hdr-burger span{background:var(--ink)}
@@ -455,7 +464,13 @@ button{font:inherit;color:inherit}
   .hdr.is-open .hdr-nav{transform:none}
   .hdr-nav a{color:var(--ink);font-size:.92rem;padding:14px 0;width:100%;border-bottom:1px solid var(--line)}
   .hdr-nav a::after{display:none}
+  .hdr-nav a.nav-news{
+    background:var(--gold-deep);color:#fffaf3;border-bottom:0;border-radius:14px;
+    margin-top:14px;text-align:center;padding:1.1em;
+  }
+  .hdr.is-stuck .hdr-nav a.nav-news{color:#fffaf3}
   .hdr-nav .nav-cta{border:0;background:var(--sage-deep);color:#fdfcf9;margin-top:18px;text-align:center;padding:1.1em}
+  .hdr.is-stuck .hdr-nav .nav-cta{color:#fdfcf9}
   .hdr-burger{display:block;z-index:2}
   .hero-in{padding:130px 0 156px}
   .hero-facts{gap:26px}
