@@ -140,7 +140,9 @@ button{font:inherit;color:inherit}
 .hero-facts dt{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,250,243,.66);margin-bottom:4px}
 .hero-facts dd{margin:0;font-size:.98rem}
 .hero-facts a{border-bottom:1px solid rgba(255,250,243,.4)}
-.hero-scroll{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);width:26px;height:42px;border:1px solid rgba(255,250,243,.5);border-radius:100px;z-index:2}
+/* spodních 46 px hero překrývá následující sekce (.sec-lift má záporný margin),
+   proto je ukazatel posazený nad ní */
+.hero-scroll{position:absolute;left:50%;bottom:74px;transform:translateX(-50%);width:26px;height:42px;border:1px solid rgba(255,250,243,.5);border-radius:100px;z-index:2}
 .hero-scroll span{position:absolute;left:50%;top:9px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#fffaf3;animation:wheel 2.1s var(--ease) infinite}
 @keyframes wheel{0%{opacity:0;transform:translateY(0)}25%{opacity:1}70%{opacity:0;transform:translateY(15px)}100%{opacity:0}}
 
@@ -419,7 +421,7 @@ button{font:inherit;color:inherit}
   .hdr-nav a::after{display:none}
   .hdr-nav .nav-cta{border:0;background:var(--sage-deep);color:#fdfcf9;margin-top:18px;text-align:center;padding:1.1em}
   .hdr-burger{display:block;z-index:2}
-  .hero-in{padding:130px 0 110px}
+  .hero-in{padding:130px 0 156px}
   .hero-facts{gap:26px}
   .sec{padding:74px 0}
   .c3,.c4,.c5,.c6,.c7,.c8{grid-column:span 12}
